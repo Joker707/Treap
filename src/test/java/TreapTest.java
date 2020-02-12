@@ -187,13 +187,21 @@ public class TreapTest {
 
 
     @Test
-    public void sameTreesTest() {
+    public void compareWithTreeSetTest() {
         NavigableSet<Integer> treapSet = new TreapSet<>();
         NavigableSet<Integer> treeSet = new TreeSet<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             treapSet.add(i);
             treeSet.add(i);
         }
-        assertEquals(treapSet, treeSet);
+        assertEquals(treeSet, treapSet);
+        treeSet.remove(50);
+        treapSet.remove(50);
+        assertEquals(treeSet, treapSet);
+        for (int i = 0; i < 5; i++) {
+            treeSet.remove(70 - i);
+            treapSet.remove(70 - i);
+        }
+        assertEquals(treeSet, treapSet);
     }
 }
