@@ -1,9 +1,6 @@
 import org.junit.Test;
 
-import java.util.LinkedList;
-import java.util.NavigableSet;
-import java.util.Random;
-import java.util.SortedSet;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -136,4 +133,67 @@ public class TreapTest {
         assertTrue(tailSet.contains(10));
     }
 
+
+    @Test
+    public void subSetTest() {
+        NavigableSet<Integer> treap = new TreapSet<>();
+        for (int i = 1; i < 21; i++) {
+            treap.add(i);
+        }
+        SortedSet<Integer> subSet = treap.subSet(5, 15);
+        assertFalse(subSet.contains(1));
+        assertFalse(subSet.contains(2));
+        assertFalse(subSet.contains(3));
+        assertFalse(subSet.contains(4));
+        assertTrue(subSet.contains(5));
+        assertTrue(subSet.contains(6));
+        assertTrue(subSet.contains(7));
+        assertTrue(subSet.contains(8));
+        assertTrue(subSet.contains(9));
+        assertTrue(subSet.contains(10));
+        assertTrue(subSet.contains(11));
+        assertTrue(subSet.contains(12));
+        assertTrue(subSet.contains(13));
+        assertTrue(subSet.contains(14));
+        assertFalse(subSet.contains(15));
+        assertFalse(subSet.contains(16));
+        assertFalse(subSet.contains(17));
+        assertFalse(subSet.contains(18));
+        assertFalse(subSet.contains(19));
+        assertFalse(subSet.contains(20));
+
+        NavigableSet<Integer> navigableSubSet = treap.subSet(7, true, 13, true);
+        assertFalse(navigableSubSet.contains(1));
+        assertFalse(navigableSubSet.contains(2));
+        assertFalse(navigableSubSet.contains(3));
+        assertFalse(navigableSubSet.contains(4));
+        assertFalse(navigableSubSet.contains(5));
+        assertFalse(navigableSubSet.contains(6));
+        assertTrue(navigableSubSet.contains(7));
+        assertTrue(navigableSubSet.contains(8));
+        assertTrue(navigableSubSet.contains(9));
+        assertTrue(navigableSubSet.contains(10));
+        assertTrue(navigableSubSet.contains(11));
+        assertTrue(navigableSubSet.contains(12));
+        assertTrue(navigableSubSet.contains(13));
+        assertFalse(navigableSubSet.contains(14));
+        assertFalse(navigableSubSet.contains(15));
+        assertFalse(navigableSubSet.contains(16));
+        assertFalse(navigableSubSet.contains(17));
+        assertFalse(navigableSubSet.contains(18));
+        assertFalse(navigableSubSet.contains(19));
+        assertFalse(navigableSubSet.contains(20));
+    }
+
+
+    @Test
+    public void sameTreesTest() {
+        NavigableSet<Integer> treapSet = new TreapSet<>();
+        NavigableSet<Integer> treeSet = new TreeSet<>();
+        for (int i = 0; i < 10; i++) {
+            treapSet.add(i);
+            treeSet.add(i);
+        }
+        assertEquals(treapSet, treeSet);
+    }
 }
